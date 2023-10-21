@@ -60,6 +60,7 @@ function init() {
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setClearColor( new THREE.Color(0xAABBCC));
     renderer.autoClear = false;
+    renderer.antialias = true;
     renderer.shadowMap.enabled = true;
     document.getElementById('container').appendChild(renderer.domElement);
 
@@ -93,7 +94,7 @@ function init() {
     puntual.position.set(10,400,-60);
     scene.add(puntual);
 
-    const focal = new THREE.SpotLight(0xFFFFFF,0.3);
+    const focal = new THREE.SpotLight(0xFFFFFF,0.5);
     focal.position.set(-10,400,60);
     focal.target.position.set(0,0,0);
     focal.angle = Math.PI;
@@ -108,8 +109,8 @@ function init() {
 };
 
 function loadScene(){
-    const brazo_robot = new THREE.MeshNormalMaterial( { wireframe: false, flatShading: false } );
-    const suelo = new THREE.MeshNormalMaterial( { wireframe: false, flatShading: false } );
+    const brazo_robot = new THREE.MeshStandardMaterial( { wireframe: false, flatShading: false } );
+    const suelo = new THREE.MeshStandardMaterial( { wireframe: false, flatShading: false, color:'gray' } );
 
     // Suelo
     floor = new THREE.Mesh(new THREE.PlaneGeometry(1000,1000,10,10), suelo);
