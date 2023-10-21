@@ -288,7 +288,7 @@ function animacion() {
     let tween7 = new TWEEN.Tween(effectController).to({giroBrazo: -10}, 2000);
     let tween8 = new TWEEN.Tween(effectController).to({giroPinza: -47.5}, 2000);
     let tween9 = new TWEEN.Tween(effectController).to({aperturaPinza: 8}, 1000);
-    let tween10 = new TWEEN.Tween(effectController).to({aperturaPinza: 0, giroBase: 0, giroBrazo: 0, giroAnteBrazoZ: 0, giroPinza: 0}, 4000).onComplete(() => {gui.reset()});
+    let tween10 = new TWEEN.Tween(effectController).to({aperturaPinza: 4, giroBase: 0, giroBrazo: 0, giroAnteBrazoZ: 0, giroPinza: 0}, 4000).onComplete(() => {gui.reset()});
     tween2.chain(tween3);
     tween3.chain(tween4);
     tween4.chain(tween5);
