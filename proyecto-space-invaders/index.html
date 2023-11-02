@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+
+<head>
+	<link href="style.css" rel="stylesheet">
+	<title>Game</title>
+</head>
+<script id="fragmentShader" type="x-shader/x-vertex">
+uniform vec3 glowColor;
+varying float intensity;
+void main() 
+{
+	vec3 glow = glowColor * intensity;
+    gl_FragColor = vec4( glow, 1.0 );
+}
+</script>
+<script id="vertexShader" type="x-shader/x-vertex">
+uniform vec3 viewVector;
+uniform float c;
+uniform float p;
+varying float intensity;
+void main() 
+{
+    vec3 vNormal = normalize( normalMatrix * normal );
+	vec3 vNormel = normalize( normalMatrix * viewVector );
+	intensity = pow( c - dot(vNormal, vNormel), p );
+	
+    gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+}
+</script>
+
+<body onload='setup();'>
+	<div id='gameCanvas'></div>
+	<script src="libs/three.js"></script>
+	<script src="libs/dat.gui.min.js"></script>
+	<script src="libs/OrbitControls.js"></script>
+	<script src="libs/EffectComposer.js"></script>
+	<script src="libs/EffectComposer.js"></script>
+	<script src="libs/RenderPass.js"></script>
+	<script src="libs/CopyShader.js"></script>
+	<script src="libs/ShaderPass.js"></script>
+	<script src="libs/MaskPass.js"></script>
+	<script src="libs/stats.min.js"></script>
+	<script src="libs/jquery-1.11.1.min.js"></script>
+
+	<script src='./scripts/teclado.js'></script>
+	<script src='./scripts/gameInterfaz.js'></script>
+	<script src='./scripts/chars.js'></script>
+	<script src='./scripts/alien.js'></script>
+	<script src='./scripts/choques.js'></script>
+	<script src='./scripts/bullets.js'></script>
+	<script src='./scripts/movementChars.js'></script>
+
+</body>
+<div class="gameOver">
+	<span class="scoreReplay"></span></br>
+	Replay? <a href="#" onclick="gamePlay();">YES</a>
+</div>
+<div class="anuncio"></div>
+<div class="score">Score : 0</div>
+<div class="life">Lives : 2</div>
+<div class="countdown">
+
+</div>
+
+</html>
